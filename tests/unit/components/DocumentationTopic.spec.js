@@ -13,6 +13,7 @@ import { getSetting } from 'docc-render/utils/theme-settings';
 import DocumentationTopic from 'docc-render/components/DocumentationTopic.vue';
 import Language from 'docc-render/constants/Language';
 import { TopicTypes } from '@/constants/TopicTypes';
+import DocumentationHero from '@/components/DocumentationTopic/DocumentationHero.vue';
 
 jest.mock('docc-render/utils/theme-settings', () => ({
   getSetting: jest.fn((_, fallback) => fallback),
@@ -204,16 +205,32 @@ describe('DocumentationTopic', () => {
     expect(main.attributes('tabindex')).toBe('0');
   });
 
+  it('renders a `DocumentationHero`', () => {
+    const hero = wrapper.find(DocumentationHero);
+    expect(hero.exists()).toBe(true);
+    expect(hero.props()).toEqual({ type: propsData.symbolKind });
+  });
+
+  it('renders a `DocumentationHero`, with a the `role`, if no symbolKind', () => {
+    wrapper.setProps({
+      role: TopicTypes.article,
+      symbolKind: '',
+    });
+    const hero = wrapper.find(DocumentationHero);
+    expect(hero.props()).toEqual({ type: TopicTypes.article });
+  });
+
   it('renders a `Title`', () => {
-    const title = wrapper.find(Title);
+    const hero = wrapper.find(DocumentationHero);
+    const title = hero.find(Title);
     expect(title.exists()).toBe(true);
     expect(title.props('eyebrow')).toBe(propsData.roleHeading);
     expect(title.text()).toBe(propsData.title);
   });
 
   it('renders an abstract', () => {
-    const descr = wrapper.find(Description);
-    const abstractComponent = descr.find(Abstract);
+    const hero = wrapper.find(DocumentationHero);
+    const abstractComponent = hero.find(Abstract);
     expect(abstractComponent.exists()).toBe(true);
     expect(abstractComponent.props('content')).toEqual(propsData.abstract);
   });
@@ -231,8 +248,8 @@ describe('DocumentationTopic', () => {
     wrapper.setProps({
       abstract: emptyParagraph,
     });
-    const descr = wrapper.find(Description);
-    const abstractComponent = descr.find(Abstract);
+    const hero = wrapper.find(DocumentationHero);
+    const abstractComponent = hero.find(Abstract);
     expect(abstractComponent.exists()).toBe(true);
     expect(abstractComponent.props('content')).toEqual(emptyParagraph);
   });
@@ -565,10 +582,10 @@ describe('DocumentationTopic', () => {
     wrapper = shallowMount(DocumentationTopic, {
       propsData,
       slots: {
-        'above-title': 'Above Title Content',
+        'above-title': '<div class="above-title">Above Title Content</div>',
       },
     });
-    expect(wrapper.text()).toContain('Above Title Content');
+    expect(wrapper.find(DocumentationHero).contains('.above-title')).toBe(true);
   });
 
   describe('lifecycle hooks', () => {
