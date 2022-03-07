@@ -15,8 +15,6 @@ import { baseNavStickyAnchorId } from 'docc-render/constants/nav';
 import { TopicTypes } from '@/constants/TopicTypes';
 import { INDEX_ROOT_KEY } from '@/constants/sidebar';
 
-jest.mock('@/utils/throttle', () => jest.fn(v => v));
-
 const technology = {
   title: 'FooTechnology',
   children: [

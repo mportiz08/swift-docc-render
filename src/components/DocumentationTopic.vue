@@ -11,34 +11,16 @@
 <template>
   <div class="doc-topic">
     <main class="main" id="main" role="main" tabindex="0">
-      <slot name="above-title" />
-      <Title :eyebrow="roleHeading">{{ title }}</Title>
-      <div class="container content-grid" :class="{ 'full-width': hideSummary }">
-        <Description :hasOverview="hasOverview">
-          <Abstract v-if="abstract" :content="abstract" />
-          <RequirementMetadata
-            v-if="isRequirement"
-            :defaultImplementationsCount="defaultImplementationsCount"
-          />
-          <Aside v-if="deprecationSummary && deprecationSummary.length" kind="deprecated">
-            <ContentNode :content="deprecationSummary" />
-          </Aside>
-          <Aside
-            v-if="downloadNotAvailableSummary && downloadNotAvailableSummary.length"
-            kind="note"
-          >
-            <ContentNode :content="downloadNotAvailableSummary" />
-          </Aside>
-          <DownloadButton v-if="sampleCodeDownload" :action="sampleCodeDownload.action" />
-        </Description>
+      <DocumentationHero :type="symbolKind || role">
+        <slot name="above-title" />
+        <Title :eyebrow="roleHeading">{{ title }}</Title>
+        <Abstract v-if="abstract" :content="abstract" />
+        <div v-if="sampleCodeDownload">
+          <DownloadButton class="sample-download" :action="sampleCodeDownload.action" />
+        </div>
+        <Availability v-if="platforms" :platforms="platforms" />
+      </DocumentationHero>
         <Summary v-if="!hideSummary">
-          <LanguageSwitcher
-            v-if="shouldShowLanguageSwitcher"
-            :interfaceLanguage="interfaceLanguage"
-            :objcPath="objcPath"
-            :swiftPath="swiftPath"
-          />
-          <Availability v-if="platforms" :platforms="platforms" />
           <TechnologyList v-if="modules" :technologies="modules" />
           <TechnologyList
             v-if="extendsTechnology"
@@ -46,14 +28,35 @@
             title="Extends"
             :technologies="[{ name: extendsTechnology }]"
           />
-          <OnThisPageNav v-if="onThisPageSections.length > 1" :sections="onThisPageSections" />
+          <LanguageSwitcher
+            v-if="shouldShowLanguageSwitcher"
+            :interfaceLanguage="interfaceLanguage"
+            :objcPath="objcPath"
+            :swiftPath="swiftPath"
+          />
         </Summary>
-        <PrimaryContent
-          v-if="primaryContentSections && primaryContentSections.length"
-          :conformance="conformance"
-          :sections="primaryContentSections"
-        />
-      </div>
+        <div class="container">
+          <Description :hasOverview="hasOverview">
+            <RequirementMetadata
+              v-if="isRequirement"
+              :defaultImplementationsCount="defaultImplementationsCount"
+            />
+            <Aside v-if="deprecationSummary && deprecationSummary.length" kind="deprecated">
+              <ContentNode :content="deprecationSummary" />
+            </Aside>
+            <Aside
+              v-if="downloadNotAvailableSummary && downloadNotAvailableSummary.length"
+              kind="note"
+            >
+              <ContentNode :content="downloadNotAvailableSummary" />
+            </Aside>
+          </Description>
+          <PrimaryContent
+            v-if="primaryContentSections && primaryContentSections.length"
+            :conformance="conformance"
+            :sections="primaryContentSections"
+          />
+        </div>
       <Topics
         v-if="topicSections"
         :sections="topicSections"
@@ -86,13 +89,13 @@ import { getSetting } from 'docc-render/utils/theme-settings';
 import Aside from 'docc-render/components/ContentNode/Aside.vue';
 import BetaLegalText from 'theme/components/DocumentationTopic/BetaLegalText.vue';
 import LanguageSwitcher from 'theme/components/DocumentationTopic/Summary/LanguageSwitcher.vue';
+import DocumentationHero from 'docc-render/components/DocumentationTopic/DocumentationHero.vue';
 import Abstract from './DocumentationTopic/Description/Abstract.vue';
 import ContentNode from './DocumentationTopic/ContentNode.vue';
 import CallToActionButton from './CallToActionButton.vue';
 import DefaultImplementations from './DocumentationTopic/DefaultImplementations.vue';
 import Description from './DocumentationTopic/Description.vue';
 import TechnologyList from './DocumentationTopic/Summary/TechnologyList.vue';
-import OnThisPageNav from './DocumentationTopic/Summary/OnThisPageNav.vue';
 import PrimaryContent from './DocumentationTopic/PrimaryContent.vue';
 import Relationships from './DocumentationTopic/Relationships.vue';
 import RequirementMetadata from './DocumentationTopic/Description/RequirementMetadata.vue';
@@ -121,6 +124,7 @@ export default {
     },
   },
   components: {
+    DocumentationHero,
     Abstract,
     Aside,
     BetaLegalText,
@@ -130,7 +134,6 @@ export default {
     DownloadButton: CallToActionButton,
     TechnologyList,
     LanguageSwitcher,
-    OnThisPageNav,
     PrimaryContent,
     Relationships,
     RequirementMetadata,
@@ -221,9 +224,9 @@ export default {
       type: Array,
       required: false,
     },
-    languagePaths: {
-      type: Object,
-      default: () => ({}),
+    variants: {
+      type: Array,
+      default: () => ([]),
     },
     extendsTechnology: {
       type: String,
@@ -280,9 +283,18 @@ export default {
         0,
       );
     },
-    hasOverview: ({ primaryContentSections = [] }) => primaryContentSections.filter(section => (
-      section.kind === PrimaryContent.constants.SectionKind.content
-    )).length > 0,
+    hasOverview:
+      ({ primaryContentSections = [], abstract = [] }) => primaryContentSections.filter(section => (
+        section.kind === PrimaryContent.constants.SectionKind.content
+      )).length > 0 || abstract.length > 0,
+    // Use `variants` data to build a map of paths associated with each unique
+    // `interfaceLanguage` trait.
+    languagePaths: ({ variants }) => variants.reduce((memo, variant) => (
+      variant.traits.reduce((_memo, trait) => (!trait.interfaceLanguage ? _memo : ({
+        ..._memo,
+        [trait.interfaceLanguage]: (_memo[trait.interfaceLanguage] || []).concat(variant.paths),
+      })), memo)
+    ), {}),
     onThisPageSections() {
       return this.topicState.onThisPageSections;
     },
@@ -343,9 +355,8 @@ export default {
   height: 100%;
 
   @include with-adjustable-sidebar {
-    @include breakpoints-from(xlarge) {
-      border-right: 1px solid var(--color-grid);
-    }
+    border-left: 1px solid var(--color-grid);
+    border-right: 1px solid var(--color-grid);
   }
 
   @include inTargetIde {
@@ -366,39 +377,8 @@ export default {
   @include dynamic-content-container;
 }
 
-.content-grid {
-  display: grid;
-  grid-template-columns: 75% 25%;
-  grid-template-rows: auto minmax(0, 1fr);
-
-  @include breakpoint(small) {
-    display: block;
-  }
-
-  &:before, &:after {
-    display: none;
-  }
-
-  &.full-width {
-    grid-template-columns: 100%;
-  }
-}
-
-.description {
-  grid-column: 1;
-}
-
-.summary {
-  grid-column: 2;
-  grid-row: 1 / -1;
-}
-
-.primary-content {
-  grid-column: 1;
-}
-
-.button-cta {
-  margin-top: 2em;
+.sample-download {
+  margin-top: 20px;
 }
 
 /deep/ {
