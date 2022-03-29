@@ -20,7 +20,7 @@ export class FetchError extends Error {
   }
 }
 
-export async function fetchData(path, params = {}) {
+export async function fetchData(path, params = {}, progress = () => {}) {
   function isBadResponse(response) {
     // When this is running in an IDE target, the `fetch` API will be used with
     // custom URL schemes. Right now, WebKit will return successful responses
@@ -46,7 +46,34 @@ export async function fetchData(path, params = {}) {
     throw response;
   }
 
-  const json = await response.json();
+  const reader = response.body.getReader();
+  const stream = new ReadableStream({
+    async start(controller) {
+      const totalBytes = parseInt(response.headers.get('Content-Length'), 10);
+      let loadedBytes = 0;
+      progress({ loadedBytes, totalBytes });
+
+      async function handleChunk() {
+        const { done, value } = await reader.read();
+        if (done) {
+          controller.close();
+          return;
+        }
+
+        controller.enqueue(value);
+        loadedBytes += value.byteLength;
+        progress({ loadedBytes, totalBytes });
+
+        await handleChunk();
+      }
+
+      await handleChunk();
+    },
+  });
+
+  const json = await (new Response(stream, {
+    headers: { 'Content-Type': 'application/json' },
+  })).json();
   emitWarningForSchemaVersionMismatch(json.schemaVersion);
   return json;
 }
@@ -109,7 +136,7 @@ export function clone(jsonObject) {
   return JSON.parse(JSON.stringify(jsonObject));
 }
 
-export async function fetchIndexPathsData() {
+export async function fetchIndexPathsData(progress = () => {}) {
   const path = new URL(`${pathJoin([baseUrl, 'index/index.json'])}`, window.location.href);
-  return fetchData(path);
+  return fetchData(path, {}, progress);
 }

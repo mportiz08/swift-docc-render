@@ -66,13 +66,20 @@ export default {
     async fetchIndexData() {
       try {
         this.isFetching = true;
-        const { interfaceLanguages } = await fetchIndexPathsData();
+        const { interfaceLanguages } = await fetchIndexPathsData(this.handleFetchProgress);
         this.navigationIndex = interfaceLanguages;
       } catch (e) {
         this.errorFetching = true;
       } finally {
         this.isFetching = false;
       }
+    },
+    handleFetchProgress({
+      loadedBytes,
+      totalBytes,
+    }) {
+      const percentage = Math.round((loadedBytes / totalBytes) * 100);
+      console.log(loadedBytes, totalBytes, `${percentage}%`); // FIXME
     },
   },
   render() {
