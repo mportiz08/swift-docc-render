@@ -144,7 +144,8 @@ export default {
      * @return {NavigatorFlatItem[]}
      */
     flattenNestedData(childrenNodes, parent = null, depth = 0) {
-      return childrenNodes.reduce((items, item, index) => {
+      console.profile('flattenNestedData');
+      const ret = childrenNodes.reduce((items, item, index) => {
         // get the children
         const { children, ...node } = item;
         // generate the extra properties
@@ -177,6 +178,8 @@ export default {
         // return the node
         return items.concat(node);
       }, []);
+      console.profileEnd('flattenNestedData');
+      return ret;
     },
   },
 };
