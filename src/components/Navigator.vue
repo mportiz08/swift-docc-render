@@ -144,6 +144,7 @@ export default {
      * @return {NavigatorFlatItem[]}
      */
     flattenNestedData(childrenNodes, parent = null, depth = 0) {
+      console.profile('flattenNestedData');
       let items = [];
       const len = childrenNodes.length;
       let index;
@@ -175,6 +176,7 @@ export default {
           items = items.concat(this.flattenNestedData(children, node, depth + 1));
         }
       }
+      console.profileEnd('flattenNestedData');
       return items;
     },
   },
