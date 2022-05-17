@@ -159,7 +159,7 @@ export default {
       AppStore.setSystemColorScheme(scheme.value);
     },
     attachStylesToRoot(CSSCustomProperties) {
-      const root = document.documentElement;
+      const root = document.body;
       Object.entries(CSSCustomProperties)
         .filter(([, value]) => Boolean(value))
         .forEach(([key, value]) => {
@@ -167,7 +167,7 @@ export default {
         });
     },
     detachStylesFromRoot(CSSCustomProperties) {
-      const root = document.documentElement;
+      const root = document.body;
       Object.entries(CSSCustomProperties).forEach(([key]) => {
         root.style.removeProperty(key);
       });
