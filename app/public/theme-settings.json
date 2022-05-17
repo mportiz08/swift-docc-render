@@ -20,7 +20,10 @@
       "documentation-intro-fill": "var(--color-fill-secondary)",
       "documentation-intro-title": "var(--color-header-text)",
       "figure-blue": "var(--color-solarized-blue)",
-      "figure-gray": "var(--color-solarized-base00)",
+      "figure-gray": {
+        "light": "var(--color-solarized-base00)",
+        "dark": "var(--color-solarized-base0)"
+      },
       "figure-gray-secondary": {
         "light": "var(--color-solarized-base1)",
         "dark": "var(--color-solarized-base01)"
@@ -35,14 +38,21 @@
       },
       "fill-blue": "var(--color-figure-blue)",
       "fill-gray-tertiary": "var(--color-figure-gray-secondary)",
+      "fill-gray-quaternary": "var(--color-fill-secondary)",
       "fill-secondary": {
         "light": "var(--color-solarized-base2)",
         "dark": "var(--color-solarized-base02)"
       },
       "fill-tertiary": "var(--color-fill-secondary)",
       "grid": "var(--color-figure-gray-secondary)",
-      "header-text": "#93a1a1",
+      "header-text": {
+        "light": "var(--color-solarized-base01)",
+        "dark": "var(--color-solarized-base1)"
+      },
       "nav-solid-background": "var(--color-fill)",
+      "nav-keyline": "var(--color-grid)",
+      "nav-sticking-expanded-keyline": "var(--color-nav-keyline)",
+      "navigator-item-hover": "var(--color-fill-blue)",
       "solarized-base03": "#002b36",
       "solarized-base02": "#073642",
       "solarized-base01": "#586e75",
