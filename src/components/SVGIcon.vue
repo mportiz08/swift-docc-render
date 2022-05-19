@@ -9,7 +9,8 @@
 -->
 
 <template>
-  <svg
+  <img v-if="themeOverrideURL" :src="themeOverrideURL" />
+  <svg v-else
     aria-hidden="true"
     class="svg-icon"
     xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +20,24 @@
 </template>
 
 <script>
-export default { name: 'SVGIcon' };
+import { getSetting } from 'docc-render/utils/theme-settings';
+
+export default {
+  name: 'SVGIcon',
+  props: {
+    themeId: {
+      type: String,
+      required: false,
+    },
+  },
+  computed: {
+    themeOverrideURL: ({ themeId }) => getSetting([
+      'theme',
+      'icons',
+      themeId,
+    ], undefined),
+  },
+};
 </script>
 
 <style scoped lang="scss">
