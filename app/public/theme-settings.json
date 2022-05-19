@@ -11,6 +11,8 @@
       "aside-important-border": "var(--color-figure-yellow)",
       "aside-note-background": "var(--color-fill-secondary)",
       "aside-note-border": "var(--color-figure-gray)",
+      "aside-tip-background": "var(--color-fill-secondary)",
+      "aside-tip-border": "var(--color-solarized-violet)",
       "aside-warning-background": "var(--color-fill-secondary)",
       "aside-warning-border": "var(--color-figure-red)",
       "badge-deprecated": "var(--color-figure-orange)",
