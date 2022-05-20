@@ -81,9 +81,6 @@
     "typography": {
       "html-font": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
       "html-font-mono": "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, \"Liberation Mono\", monospace"
-    },
-    "icons": {
-      "article": "/images/article.svg"
     }
   },
   "features": {
