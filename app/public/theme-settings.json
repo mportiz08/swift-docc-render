@@ -18,7 +18,7 @@
       "aside-warning-border": "var(--color-figure-red)",
       "badge-deprecated": "var(--color-figure-orange)",
       "documentation-intro-accent": "var(--color-fill)",
-      "documentation-intro-eyebrow": "var(--color-figure-gray-secondary)",
+      "documentation-intro-eyebrow": "var(--color-text)",
       "documentation-intro-figure": "var(--color-figure-gray)",
       "documentation-intro-fill": "var(--color-fill-secondary)",
       "documentation-intro-title": "var(--color-header-text)",
