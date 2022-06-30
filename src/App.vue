@@ -63,8 +63,19 @@ export default {
   computed: {
     currentColorScheme: ({ appState }) => appState.systemColorScheme,
     preferredColorScheme: ({ appState }) => appState.preferredColorScheme,
-    CSSCustomProperties: ({ themeSettings, currentColorScheme }) => (
-      objectToCustomProperties(themeSettings.theme, currentColorScheme)
+    CSSCustomProperties: ({
+      currentColorScheme,
+      preferredColorScheme,
+      themeSettings,
+    }) => (
+      // If the user has selected "Auto", delegate to the system's current
+      // preference to determine if "Light" or "Dark" colors should be used.
+      // Otherwise, if "Light" or "Dark" has been explicitly chosen, that choice
+      // should be used directly.
+      objectToCustomProperties(themeSettings.theme, (preferredColorScheme === ColorScheme.auto.value
+        ? currentColorScheme
+        : preferredColorScheme
+      ))
     ),
     hasCustomHeader: () => !!window.customElements.get('custom-header'),
     hasCustomFooter: () => !!window.customElements.get('custom-footer'),
