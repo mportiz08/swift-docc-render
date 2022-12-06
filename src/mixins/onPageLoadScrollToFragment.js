@@ -12,9 +12,9 @@ import scrollToElement from 'docc-render/mixins/scrollToElement';
 
 export default {
   mixins: [scrollToElement],
-  mounted() {
+  /* mounted() {
     if (this.$route.hash) {
       this.scrollToElement(this.$route.hash);
     }
-  },
+  }, */
 };

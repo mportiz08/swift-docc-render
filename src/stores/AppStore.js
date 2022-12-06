@@ -21,6 +21,7 @@ const defaultColorScheme = supportsAutoColorScheme ? ColorScheme.auto : ColorSch
 
 export default {
   state: {
+    pendingDataRequests: [],
     preferredColorScheme: Settings.preferredColorScheme || defaultColorScheme.value,
     supportsAutoColorScheme,
     systemColorScheme: ColorScheme.light.value,
@@ -37,5 +38,13 @@ export default {
       && Settings.preferredColorScheme !== this.state.preferredColorScheme) {
       this.state.preferredColorScheme = Settings.preferredColorScheme;
     }
+  },
+  pushPendingDataRequest(request) {
+    console.log('pushPendingDataRequest', request);
+    this.state.pendingDataRequests.push(request);
+  },
+  clearPendingDataRequests() {
+    console.log('clearPendingDataRequests');
+    this.state.pendingDataRequests = [];
   },
 };

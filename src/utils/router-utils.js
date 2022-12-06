@@ -18,6 +18,7 @@ import { waitFrames } from 'docc-render/utils/loading';
 import { cssEscapeTopicIdHash } from 'docc-render/utils/strings';
 import { areEquivalentLocations } from 'docc-render/utils/url-helper';
 import getExtraScrollOffset from 'theme/utils/scroll-offset.js';
+import AppStore from 'docc-render/stores/AppStore';
 
 /**
  * Returns the current absolute location, eg: '/tutorials/swiftui/something'
@@ -59,12 +60,20 @@ export async function scrollBehavior(to, from, savedPosition) {
     const offset = baseNavOffset + apiChangesNavHeight + getExtraScrollOffset(to);
 
     const y = process.env.VUE_APP_TARGET === 'ide' ? 0 : offset;
+    await Promise.allSettled(AppStore.state.pendingDataRequests);
+    if (this.app) {
+      await this.app.$nextTick();
+    }
+    // wait another 8 frames to ensure that any additional rendering like
+    // loading images doesn't throw off the location
+    await waitFrames(8);
     return { selector: cssEscapeTopicIdHash(hash), offset: { x: 0, y } };
   }
   if (areEquivalentLocations(to, from)) {
     // Do not change the scroll position if the location hasn't changed.
     return false;
   }
+
   return { x: 0, y: 0 };
 }
 

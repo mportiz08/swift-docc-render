@@ -16,6 +16,7 @@ import {
 } from 'docc-render/utils/router-utils';
 import routes from 'docc-render/routes';
 import { baseUrl } from 'docc-render/utils/theme-settings';
+import AppStore from 'docc-render/stores/AppStore';
 
 export default function createRouterInstance(routerConfig = {}) {
   const router = new Router({
@@ -45,6 +46,10 @@ export default function createRouterInstance(routerConfig = {}) {
       });
     });
   }
+
+  router.afterEach(() => {
+    AppStore.clearPendingDataRequests();
+  });
 
   // save the scrollPosition when we quit the tab. eg: reload
   window.addEventListener('unload', saveScrollOnReload);

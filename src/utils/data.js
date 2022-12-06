@@ -14,6 +14,7 @@ import emitWarningForSchemaVersionMismatch from 'docc-render/utils/schema-versio
 import { baseUrl } from 'docc-render/utils/theme-settings';
 import RedirectError from 'docc-render/errors/RedirectError';
 import FetchError from 'docc-render/errors/FetchError';
+import AppStore from 'docc-render/stores/AppStore';
 
 export async function fetchData(path, params = {}) {
   function isBadResponse(response) {
@@ -76,8 +77,10 @@ export async function fetchDataForRouteEnter(to, from, next) {
   const path = createDataPath(to.path);
 
   let data;
+  const fetchRequest = fetchData(path, to.query);
+  AppStore.pushPendingDataRequest(fetchRequest);
   try {
-    data = await fetchData(path, to.query);
+    data = await fetchRequest;
   } catch (error) {
     if (process.env.VUE_APP_TARGET === 'ide') {
       console.error(error);
