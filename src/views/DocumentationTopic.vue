@@ -151,8 +151,13 @@ export default {
       showQuickNavigationModal: false,
       store: DocumentationTopicStore,
       BreakpointName,
-      enableMinimized: false,
     };
+  },
+  props: {
+    enableMinimized: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     objcOverrides: ({ topicData }) => {
