@@ -71,6 +71,7 @@ $docs-code-listing-border-width: 1px !default;
   }
 
   img {
+    background: var(--color-image-background);
     display: block;
     margin: auto;
     max-width: 100%;
