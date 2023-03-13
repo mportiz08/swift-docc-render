@@ -16,11 +16,11 @@
       @change="updateRouter"
     >
       <option
-        v-for="{ code, name } in locales"
-        :key="code"
-        :value="code"
+        v-for="locale in locales"
+        :key="locale.code"
+        :value="getValue(locale)"
       >
-        {{ name }}
+        {{ locale.name }}
       </option>
     </select>
     <ChevronThickIcon class="icon-inline" />
@@ -38,10 +38,15 @@ export default {
   components: {
     ChevronThickIcon,
   },
-  data() {
-    return {
-      locales,
-    };
+  props: {
+    locales: {
+      type: Array,
+      default: () => locales,
+    },
+    getValue: {
+      type: Function,
+      default: locale => locale.code,
+    },
   },
   methods: {
     updateRouter({ target: { value: currentLocale } }) {

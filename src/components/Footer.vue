@@ -28,7 +28,7 @@ export default {
   name: 'Footer',
   components: { ColorSchemeToggle, LocaleSelector },
   computed: {
-    enablei18n: () => enablei18n,
+    enablei18n,
   },
 };
 </script>

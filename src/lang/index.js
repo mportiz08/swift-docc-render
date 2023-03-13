@@ -23,4 +23,4 @@ export const messages = {
   'ja-JP': ja_JP,
 };
 // enable i18n feature flag
-export const enablei18n = getSetting(['features', 'docs', 'i18n', 'enable'], false);
+export const enablei18n = () => getSetting(['features', 'docs', 'i18n', 'enable'], false);

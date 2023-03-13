@@ -23,6 +23,28 @@ export function localeIsValid(localeCode) {
   return localeCodes.has(localeCode);
 }
 
+// If possible, map abbreviated country codes to the full code for its
+// corresponding locale.
+// Otherwise, return the unmodified code
+//
+// This allows the abbreviated country code to be used as a parameter in the
+// URL to refer to a more specific locale.
+//
+// examples:
+// getSanitizedLocaleCode('zh-CN') => 'zh-CN'
+// getSanitizedLocaleCode('cn') => 'zh-CN'
+// getSanitizedLocaleCode('foobar') => 'foobar'
+function getSanitizedLocaleCode(code) {
+  // this may fail if we ever support a locale without a language subtag due
+  // to the reliance on the hyphen separator
+  const getCountry = locale => locale.code.toLowerCase().split('-')[1];
+  return appLocales.reduce((sanitized, locale) => (
+    code.toLowerCase() === getCountry(locale).toLowerCase()
+      ? locale.code
+      : code
+  ), code);
+}
+
 /**
  * Updates i18n global var and html lang
  * @param {{ params: { locale: String } }} to - where the route navigates to
@@ -30,7 +52,7 @@ export function localeIsValid(localeCode) {
  * @param {{ code: String, name: String }[]} locales
  */
 export function updateCurrentLocale(to, env) {
-  const currentLocale = to.params.locale || defaultLocale;
+  const currentLocale = getSanitizedLocaleCode(to.params.locale || defaultLocale);
   // exist if current locale is not supported
   if (!localeIsValid(currentLocale)) return;
   // update locale global var
