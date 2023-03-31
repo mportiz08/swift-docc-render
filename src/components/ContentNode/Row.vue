@@ -74,8 +74,6 @@ export default {
     }
   }
 
-  /deep/ + * {
-    margin-top: $stacked-margin-large;
-  }
+  @include space-out-between-siblings($stacked-margin-large);
 }
 </style>
