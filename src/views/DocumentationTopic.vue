@@ -107,7 +107,7 @@ import communicationBridgeUtils from 'docc-render/mixins/communicationBridgeUtil
 import onPageLoadScrollToFragment from 'docc-render/mixins/onPageLoadScrollToFragment';
 import NavigatorDataProvider from 'theme/components/Navigator/NavigatorDataProvider.vue';
 import QuickNavigationButton from 'docc-render/components/Navigator/QuickNavigationButton.vue';
-import QuickNavigationModal from 'docc-render/components/Navigator/QuickNavigationModal.vue';
+import QuickNavigationModal from 'theme/components/Navigator/QuickNavigationModal.vue';
 import AdjustableSidebarWidth from 'docc-render/components/AdjustableSidebarWidth.vue';
 import Navigator from 'docc-render/components/Navigator.vue';
 import DocumentationNav from 'theme/components/DocumentationTopic/DocumentationNav.vue';

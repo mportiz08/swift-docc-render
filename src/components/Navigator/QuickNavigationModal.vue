@@ -22,6 +22,7 @@
       @keydown.enter.exact="handleKeyEnter"
       @click.self="closeQuickNavigationModal"
     >
+      <slot name="before-filter" />
       <div
         class="quick-navigation__container"
         :class="{ 'focus' : focusedInput }"
@@ -443,6 +444,7 @@ $input-horizontal-spacing: rem(15px);
 
 .quick-navigation {
   --input-border-color: var(--color-grid);
+  padding: 0 rem(16px);
 
   input[type="text"] {
     @include font-styles(body-large);
@@ -460,7 +462,6 @@ $input-horizontal-spacing: rem(15px);
     background-color: var(--color-fill-secondary);
     border: solid $base-border-width var(--input-border-color);
     border-radius: $small-border-radius;
-    margin: 0 rem(16px);
     > * {
       --input-text: var(--color-figure-gray-secondary);
     }
