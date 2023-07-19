@@ -14,6 +14,7 @@
     :showClose="false"
     :visible.sync="isVisible"
     backdropBackgroundColorOverride="rgba(0, 0, 0, 0.7)"
+    @open="$emit('open')"
   >
     <div
       class="quick-navigation"
