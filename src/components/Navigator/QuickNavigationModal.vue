@@ -31,7 +31,7 @@
         <FilterInput
           v-model="userInput"
           class="quick-navigation__filter"
-          :placeholder="$t('filter.search-symbols', { technology })"
+          :placeholder="placeholder || $t('filter.search-symbols', { technology })"
           focusInputWhenCreated
           focusInputWhenEmpty
           preventBorderStyle
@@ -188,6 +188,10 @@ export default {
     children: {
       type: Array,
       required: true,
+    },
+    placeholder: {
+      type: String,
+      required: false,
     },
     showQuickNavigationModal: {
       type: Boolean,
