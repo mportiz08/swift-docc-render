@@ -2532,7 +2532,57 @@ describe('ContentNode', () => {
           ],
         },
       });
-      expect(wrapper.vm.plaintext).toBe('A\nB');
+      expect(wrapper.vm.plaintext).toBe('A\n\nB');
+    });
+
+    it('utilizes reference titles when available', () => {
+      const references = {
+        b: {
+          identifier: 'b',
+          title: 'B',
+          url: '/b',
+        },
+        c: {
+          identifier: 'c',
+          title: 'c',
+          url: '/c',
+        },
+        z2: {
+          identifier: 'z2',
+          url: '/z2',
+        },
+      };
+      const wrapper = mountWithItem({
+        type: ContentNode.BlockType.paragraph,
+        inlineContent: [
+          {
+            type: ContentNode.InlineType.text,
+            text: 'A',
+          },
+          {
+            type: ContentNode.InlineType.reference,
+            identifier: 'b',
+          },
+          {
+            type: ContentNode.InlineType.reference,
+            identifier: 'z1',
+          },
+          {
+            type: ContentNode.InlineType.reference,
+            identifier: 'z2',
+          },
+          {
+            type: ContentNode.InlineType.reference,
+            identifier: 'c',
+            overridingTitle: 'C',
+          },
+          {
+            type: ContentNode.InlineType.text,
+            text: 'D',
+          },
+        ],
+      }, references);
+      expect(wrapper.vm.plaintext).toBe('ABCD');
     });
   });
 });
