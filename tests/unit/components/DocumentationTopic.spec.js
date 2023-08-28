@@ -883,6 +883,22 @@ describe('DocumentationTopic', () => {
     expect(wrapper.contains('.above-hero-content')).toBe(true);
   });
 
+  it('renders content in the `before-primary-content` slot', () => {
+    wrapper = shallowMount(DocumentationTopic, {
+      propsData,
+      slots: {
+        'before-primary-content': '<div class="foo">foo</div>',
+      },
+      stubs: {
+        DocumentationHero,
+      },
+      provide: {
+        store: mockStore,
+      },
+    });
+    expect(wrapper.contains('.foo')).toBe(true);
+  });
+
   it('renders `OnThisPageNav` component, if enabled via prop', () => {
     expect(wrapper.find(OnThisPageNav).exists()).toBe(false);
     expect(wrapper.find(OnThisPageStickyContainer).exists()).toBe(false);

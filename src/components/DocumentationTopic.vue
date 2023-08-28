@@ -98,6 +98,7 @@
                 <ContentNode :content="downloadNotAvailableSummary" />
               </Aside>
             </div>
+            <slot name="before-primary-content" />
             <PrimaryContent
               v-if="primaryContentSectionsSanitized && primaryContentSectionsSanitized.length"
               :class="{ 'with-border': !enhanceBackground }"
