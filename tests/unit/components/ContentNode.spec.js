@@ -2532,7 +2532,7 @@ describe('ContentNode', () => {
           ],
         },
       });
-      expect(wrapper.vm.plaintext).toBe('A\nB');
+      expect(wrapper.vm.plaintext).toBe('A\n\nB');
     });
 
     it('utilizes reference titles when available', () => {

@@ -654,7 +654,7 @@ export default {
       return this.reduce((text, node) => {
         switch (node.type) {
         case BlockType.paragraph:
-          return `${text}\n`;
+          return `${text}\n\n`;
         case InlineType.text:
           return `${text}${node.text}`;
         case InlineType.reference: {
