@@ -652,13 +652,19 @@ export default {
     // ignored in the resulting plaintext representation.
     plaintext() {
       return this.reduce((text, node) => {
-        if (node.type === BlockType.paragraph) {
+        switch (node.type) {
+        case BlockType.paragraph:
           return `${text}\n`;
-        }
-        if (node.type === InlineType.text) {
+        case InlineType.text:
           return `${text}${node.text}`;
+        case InlineType.reference: {
+          const reference = (this.references || {})[node.identifier] || {};
+          const title = node.overridingTitle || (reference.title || '');
+          return `${text}${title}`;
         }
-        return text;
+        default:
+          return text;
+        }
       }, '').trim();
     },
   },
