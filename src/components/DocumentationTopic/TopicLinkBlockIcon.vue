@@ -63,6 +63,7 @@ export default {
 @import 'docc-render/styles/_core.scss';
 
 .topic-icon-wrapper {
+  color: var(--color-svg-icon);
   display: flex;
   align-items: center;
   justify-content: center;

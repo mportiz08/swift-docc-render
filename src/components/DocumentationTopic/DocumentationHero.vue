@@ -122,6 +122,7 @@ $doc-hero-overlay-background: transparent !default;
 $doc-hero-icon-opacity: 1 !default;
 $doc-hero-icon-color: var(
     --color-documentation-intro-accent,
+    --icon-color,
     #{dark-color(fill-secondary)}
 ) !default;
 $doc-hero-icon-spacing: 25px;

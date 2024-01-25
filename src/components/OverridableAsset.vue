@@ -8,10 +8,11 @@
   See https://swift.org/CONTRIBUTORS.txt for Swift project authors
 -->
 <template>
-  <ImageAsset
-    v-if="shouldUseAsset"
-    v-bind="{ variants, loading: null, shouldCalculateOptimalWidth, alt }"
-  />
+  <div v-if="shouldUseAsset" class="asset-mask" :style="maskStyles">
+    <ImageAsset
+      v-bind="{ variants, loading: null, shouldCalculateOptimalWidth, alt }"
+    />
+  </div>
   <SVGIcon v-else :icon-url="iconUrl" :themeId="themeId" />
 </template>
 <script>
@@ -42,6 +43,9 @@ export default {
     themeId: ({ firstVariant }) => firstVariant && firstVariant.svgID,
     isSameOrigin: ({ iconUrl, sameOrigin }) => sameOrigin(iconUrl),
     shouldUseAsset: ({ isSameOrigin, themeId }) => !isSameOrigin || !themeId,
+    maskStyles: ({ iconUrl }) => ({
+      '--mask-url': `url(${iconUrl})`,
+    }),
   },
   methods: {
     sameOrigin(url) {
@@ -53,3 +57,19 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.asset-mask {
+  // utilize a mask pointing to the svg so that the color of it can be
+  // controlled here through CSS
+  background-color: currentColor;
+  -webkit-mask: var(--mask-url) no-repeat center;
+  mask: var(--mask-url) no-repeat center;
+
+  // hide the actual child img since we're only using it to size the div that
+  // utilizes the image as a mask (to control its color in CSS)
+  &:deep(img) {
+    opacity: 0;
+  }
+}
+</style>
