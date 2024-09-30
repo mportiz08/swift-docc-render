@@ -68,6 +68,11 @@ const InlineType = {
   strikethrough: 'strikethrough',
 };
 
+const TopicReferenceTypes = new Set([
+  'section',
+  'topic',
+]);
+
 // Examples of each header style with capital letters showing header cells:
 //
 // "row" (header cells in first row)
@@ -257,6 +262,8 @@ function renderNode(createElement, references) {
   );
 
   return function render(node) {
+    const { isFromIncludedArchive = () => true } = this || {};
+
     switch (node.type) {
     case BlockType.aside: {
       const props = { kind: node.style, name: node.name };
@@ -465,12 +472,20 @@ function renderNode(createElement, references) {
       const titleInlineContent = node.overridingTitleInlineContent
         || reference.titleInlineContent;
       const titlePlainText = node.overridingTitle || reference.title;
+
+      // inactivate "topic" and "section" references if they are not considered
+      // to be included in the containing archive context
+      let { isActive } = node;
+      if (TopicReferenceTypes.has(reference.type)) {
+        isActive &&= isFromIncludedArchive(node.identifier);
+      }
+
       return createElement(Reference, {
         props: {
           url: reference.url,
           kind: reference.kind,
           role: reference.role,
-          isActive: node.isActive,
+          isActive,
           ideTitle: reference.ideTitle,
           titleStyle: reference.titleStyle,
           hasInlineFormatting: !!titleInlineContent,
