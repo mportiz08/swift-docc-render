@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <div class="tutorials-overview">
+  <div class="tutorials-overview theme-dark">
     <Nav
       v-if="!isTargetIDE"
       :sections="otherSections"
@@ -144,5 +144,10 @@ export default {
       background: #111111 !important;
     }
   }
+}
+
+.theme-dark {
+  --color-figure-light-gray: #{dark-color(figure-light-gray)};
+  --color-fill-light-gray-secondary: #{dark-color(fill-light-gray-secondary)};
 }
 </style>
