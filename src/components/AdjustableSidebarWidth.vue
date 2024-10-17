@@ -196,6 +196,15 @@ export default {
     BreakpointScopes: () => BreakpointScopes,
   },
   async mounted() {
+    const slotChangeObserver = new MutationObserver(() => {
+      // make sure the scroll is unlocked when the slot containing the
+      // scrolling element changes
+      if (this.shownOnMobile) {
+        this.toggleScrollLock(false);
+      }
+    });
+    slotChangeObserver.observe(this.$refs.aside, { childList: true, subtree: true });
+
     window.addEventListener('keydown', this.onEscapeKeydown);
     window.addEventListener('resize', this.storeWindowSize, { passive: true });
     window.addEventListener('orientationchange', this.storeWindowSize, { passive: true });
@@ -206,6 +215,8 @@ export default {
     }
 
     this.$once('hook:beforeDestroy', () => {
+      slotChangeObserver.disconnect();
+
       window.removeEventListener('keydown', this.onEscapeKeydown);
       window.removeEventListener('resize', this.storeWindowSize);
       window.removeEventListener('orientationchange', this.storeWindowSize);
