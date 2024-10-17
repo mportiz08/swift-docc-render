@@ -353,6 +353,7 @@ export default {
      * Toggles the scroll lock on/off
      */
     async toggleScrollLock(lock) {
+      debugger;
       const scrollLockContainer = document.getElementById(this.scrollLockID);
       if (lock) {
         await this.$nextTick();
