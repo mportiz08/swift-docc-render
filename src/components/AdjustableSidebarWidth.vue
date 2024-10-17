@@ -196,14 +196,16 @@ export default {
     BreakpointScopes: () => BreakpointScopes,
   },
   async mounted() {
-    const slotChangeObserver = new MutationObserver(() => {
+    // eslint-disable-next-line no-unused-vars
+    const slotChangeObserver = new MutationObserver((mutations) => {
+      debugger;
       // make sure the scroll is unlocked when the slot containing the
       // scrolling element changes
       if (this.shownOnMobile) {
         this.toggleScrollLock(false);
       }
     });
-    slotChangeObserver.observe(this.$refs.aside, { childList: true, subtree: true });
+    slotChangeObserver.observe(this.$refs.aside, { childList: true });
 
     window.addEventListener('keydown', this.onEscapeKeydown);
     window.addEventListener('resize', this.storeWindowSize, { passive: true });
