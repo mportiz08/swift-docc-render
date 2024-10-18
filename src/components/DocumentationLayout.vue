@@ -144,6 +144,10 @@ export default {
       type: Number,
       default: null,
     },
+    shouldUnlockScroll: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -159,12 +163,14 @@ export default {
     ),
     sidebarProps: ({
       sidenavVisibleOnMobile, enableNavigator, sidenavHiddenOnLarge, navigatorFixedWidth,
+      shouldUnlockScroll,
     }) => (
       enableNavigator
         ? {
           shownOnMobile: sidenavVisibleOnMobile,
           hiddenOnLarge: sidenavHiddenOnLarge,
           fixedWidth: navigatorFixedWidth,
+          shouldUnlockScroll,
         }
         : {
           enableNavigator,

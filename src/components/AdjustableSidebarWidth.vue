@@ -128,6 +128,10 @@ export default {
       type: Number,
       default: null,
     },
+    shouldUnlockScroll: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     const windowWidth = window.innerWidth;
@@ -196,17 +200,6 @@ export default {
     BreakpointScopes: () => BreakpointScopes,
   },
   async mounted() {
-    // eslint-disable-next-line no-unused-vars
-    const slotChangeObserver = new MutationObserver((mutations) => {
-      debugger;
-      // make sure the scroll is unlocked when the slot containing the
-      // scrolling element changes
-      if (this.shownOnMobile) {
-        this.toggleScrollLock(false);
-      }
-    });
-    slotChangeObserver.observe(this.$refs.aside, { childList: true });
-
     window.addEventListener('keydown', this.onEscapeKeydown);
     window.addEventListener('resize', this.storeWindowSize, { passive: true });
     window.addEventListener('orientationchange', this.storeWindowSize, { passive: true });
@@ -217,8 +210,6 @@ export default {
     }
 
     this.$once('hook:beforeDestroy', () => {
-      slotChangeObserver.disconnect();
-
       window.removeEventListener('keydown', this.onEscapeKeydown);
       window.removeEventListener('resize', this.storeWindowSize);
       window.removeEventListener('orientationchange', this.storeWindowSize);
@@ -269,6 +260,11 @@ export default {
     },
     hiddenOnLarge() {
       this.isTransitioning = true;
+    },
+    shouldUnlockScroll(val) {
+      if (val && this.showOnMobile) {
+        this.toggleScrollLock(false);
+      }
     },
   },
   methods: {
