@@ -128,7 +128,7 @@ export default {
       type: Number,
       default: null,
     },
-    shouldUnlockScroll: {
+    scrollIsLocked: {
       type: Boolean,
       default: false,
     },
@@ -261,9 +261,9 @@ export default {
     hiddenOnLarge() {
       this.isTransitioning = true;
     },
-    shouldUnlockScroll(val) {
-      if (val && this.showOnMobile) {
-        this.toggleScrollLock(false);
+    scrollIsLocked(val) {
+      if (this.showOnMobile) {
+        this.toggleScrollLock(val);
       }
     },
   },
