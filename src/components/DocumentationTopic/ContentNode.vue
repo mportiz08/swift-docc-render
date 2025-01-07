@@ -76,15 +76,40 @@ $docs-code-listing-border-width: 1px !default;
 
   ol,
   ul {
+    counter-reset: listitem;
+    margin-inline-start: 0;
     margin-top: var(--spacing-stacked-margin-large);
+
+    li {
+      display: block;
+      margin-inline-start: var(--marker-offset);
+
+      &::before {
+        counter-increment: listitem;
+        margin-inline-start: calc(0em - var(--marker-offset));
+        position: absolute;
+      }
+    }
 
     li:not(:first-child) {
       margin-top: var(--spacing-stacked-margin-large);
     }
+  }
 
-    @include breakpoint(small) {
-      margin-left: 1.25rem;
-    }
+  ol {
+    --marker-offset: 1.7em;
+  }
+
+  ul {
+    --marker-offset: 0.85em;
+  }
+
+  ul:not([class]) li::before {
+    content: "• ";
+  }
+
+  ol:not([class]) li::before {
+    content: counter(listitem) ". ";
   }
 
   dt:not(:first-child) {
