@@ -31,12 +31,6 @@
       <PortalTarget name="modal-destination" multiple />
       <template #aside="{ scrollLockID, breakpoint }">
         <div class="documentation-layout-aside">
-          <QuickNavigationModal
-            v-if="enableQuickNavigation"
-            :children="indexNodes"
-            :showQuickNavigationModal.sync="showQuickNavigationModal"
-            :technology="technology ? technology.title : ''"
-          />
           <transition name="delay-hiding">
             <slot
               name="navigator"
@@ -60,6 +54,12 @@
                 @close="handleToggleSidenav(breakpoint)"
               >
                 <template v-if="enableQuickNavigation" #filter>
+                  <QuickNavigationModal
+                    v-if="enableQuickNavigation"
+                    :children="indexNodes"
+                    :showQuickNavigationModal.sync="showQuickNavigationModal"
+                    :technology="technology ? technology.title : ''"
+                  />
                   <QuickNavigationButton @click.native="openQuickNavigationModal" />
                 </template>
                 <template #above-navigator-head>
