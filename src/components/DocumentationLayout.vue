@@ -38,6 +38,7 @@
                 scrollLockID,
                 breakpoint,
                 sidenavVisibleOnMobile,
+                showQuickNavigationModal,
                 handleToggleSidenav,
                 enableQuickNavigation,
                 openQuickNavigationModal,
