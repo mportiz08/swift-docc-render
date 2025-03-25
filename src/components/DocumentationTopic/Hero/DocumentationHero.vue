@@ -166,7 +166,7 @@ $doc-hero-icon-dimension: 250px;
   .icon {
     position: absolute;
     margin-top: $doc-hero-icon-vertical-spacing;
-    margin-right: $doc-hero-icon-spacing;
+    margin-inline-end: $doc-hero-icon-spacing;
     inset-inline-end: 0;
     width: $doc-hero-icon-dimension;
     // create icon box with spacing in hero section
