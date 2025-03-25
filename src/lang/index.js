@@ -15,7 +15,8 @@ import ja_JP from './locales/ja-JP.json';
 import ko_KR from './locales/ko-KR.json';
 
 // default locale
-export const defaultLocale = 'en-US';
+// export const defaultLocale = 'en-US';
+export const defaultLocale = 'ar';
 // translated locales
 export const messages = {
   'en-US': en_US,

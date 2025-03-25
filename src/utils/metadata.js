@@ -122,10 +122,30 @@ export function addOrUpdateMetadata({
   );
 }
 
+// incomplete/hardcoded constants only needed for manually determining language
+// of given locales in Firefox
+const RtlLocales = new Set(['ar']);
+const Direction = {
+  ltr: 'ltf',
+  rtl: 'rtl',
+};
+
+function getDirection(localeName) {
+  const locale = new Intl.Locale(localeName);
+  if ((typeof locale.getTextInfo) === 'function') {
+    return locale.getTextInfo()?.direction ?? Direction.ltr;
+  }
+
+  // only needed for Firefox, which doesn't support `Intl.Locale.getTextInfo`
+  return RtlLocales.has(localeName) ? Direction.rtl : Direction.ltr;
+}
+
 /**
  * It updates the document setting a new lang attribute with the iso code or fallback on the locale
  * @param {String} locale
  */
 export function updateLangTag(locale) {
-  document.querySelector('html').setAttribute('lang', locale);
+  const htmlElement = document.querySelector('html');
+  htmlElement.setAttribute('lang', locale);
+  htmlElement.setAttribute('dir', getDirection(locale));
 }
