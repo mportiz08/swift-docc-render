@@ -23,8 +23,7 @@ const codeForSlug = locales.reduce((map, locale) => ({
  * @return {String}
  */
 export function getCodeForSlug(slug) {
-  return slug;
-  // return codeForSlug[slug];
+  return codeForSlug[slug];
 }
 
 /**
@@ -54,7 +53,7 @@ export function getLocaleParam(slug) {
  */
 export function updateLocale(slug = defaultLocale, env = {}) {
   // exist if current locale is not supported
-  // if (!localeIsValid(slug)) return;
+  if (!localeIsValid(slug)) return;
   // update locale global var
   env.$i18n.locale = slug; // eslint-disable-line no-param-reassign
   // get code
