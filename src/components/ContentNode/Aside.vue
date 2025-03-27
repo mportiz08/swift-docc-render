@@ -53,11 +53,14 @@ aside {
   break-inside: avoid;
   border-radius: var(--aside-border-radius, $border-radius);
   border-style: var(--aside-border-style, solid);
-  border-width: var(--aside-border-width,
+  /*border-width: var(--aside-border-width,
     $aside-width-border
     $aside-width-border
     $aside-width-border
-    $aside-width-left-border);
+    $aside-width-left-border);*/
+  /* TODO: how to properly handle var(--aside-border-width) from themes? */
+  border-block-width: $aside-width-border;
+  border-inline-width: $aside-width-left-border 0;
   padding: rem(16px);
   text-align: start;
 
