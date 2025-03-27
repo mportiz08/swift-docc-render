@@ -299,6 +299,8 @@ export default {
       const { sidebar } = this.$refs;
       const clientX = this.isTouch ? e.touches[0].clientX : e.clientX;
       // make sure we add the window horizontal scroll to the touch position, fixes zoomed in iOS
+      // TODO: may need to dynamically determine whether to use left/right
+      // offset depending on language direction
       let newWidth = ((clientX + window.scrollX) - sidebar.offsetLeft);
       // prevent going outside of the window zone
       if (newWidth > this.maxWidth) {
@@ -461,11 +463,10 @@ export default {
     position: fixed;
     top: var(--top-offset-mobile);
     bottom: 0;
-    left: 0;
+    inset-inline-start: 0;
     z-index: $nav-z-index + 1;
     transform: translateX(-100%);
     transition: transform var(--nav-transition-duration) ease-in;
-    left: 0;
 
     :deep(.aside-animated-child) {
       opacity: 0;
@@ -502,7 +503,7 @@ export default {
   cursor: col-resize;
   top: 0;
   bottom: 0;
-  right: 0;
+  inset-inline-end: 0;
   width: 5px;
   height: 100%;
   user-select: none;
