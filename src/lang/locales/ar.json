@@ -1,213 +1,213 @@
 {
-  "view-in": "View in English",
-  "continue-viewing": "Continue viewing in English",
-  "language": "Language",
+  "view-in": "عرض باللغة الإنجليزية",
+  "continue-viewing": "مواصلة المشاهدة باللغة الإنجليزية",
+  "language": "اللغة",
   "video": {
-    "title": "Video",
-    "replay": "Replay",
-    "play": "Play",
-    "pause": "Pause",
-    "watch": "Watch intro video",
-    "description": "Content description: {alt}",
-    "custom-controls": "Video with custom controls."
+    "title": "فيديو",
+    "replay": "إعادة التشغيل",
+    "play": "تشغيل",
+    "pause": "إيقاف مؤقت",
+    "watch": "مشاهدة فيديو المقدمة",
+    "description": "وصف المحتوى: {alt}",
+    "custom-controls": "فيديو مع عناصر تحكم مخصصة."
   },
   "tutorials": {
-    "title": "Tutorial | Tutorials",
-    "step": "Step {number}",
-    "submit": "Submit",
-    "next": "Next",
+    "title": "دليل | أدلة",
+    "step": "خطوة {number}",
+    "submit": "إرسال",
+    "next": "التالي",
     "preview": {
-      "title": "No Preview | Preview | Previews",
-      "no-preview-available-step": "No preview available for this step."
+      "title": "لا يوجد معاينة | معاينة | معاينات",
+      "no-preview-available-step": "لا تتوفر معاينة لهذه الخطوة."
     },
     "nav": {
-      "chapters": "Chapters",
-      "current": "Current {thing}"
+      "chapters": "الفصول",
+      "current": "الحالي {thing}"
     },
     "assessment": {
-      "check-your-understanding": "Check Your Understanding",
-      "success-message": "Great job, you've answered all the questions for this tutorial.",
-      "answer-result": "Answer {answer} is {result}",
-      "correct": "correct",
-      "incorrect": "incorrect",
-      "next-question": "Next question",
-      "legend": "Possible answers"
+      "check-your-understanding": "تحقق من فهمك",
+      "success-message": "عمل رائع، لقد أجبت على جميع الأسئلة في هذا الدليل.",
+      "answer-result": "الإجابة {answer} هي {result}",
+      "correct": "صحيح",
+      "incorrect": "غير صحيح",
+      "next-question": "السؤال التالي",
+      "legend": "الإجابات الممكنة"
     },
-    "project-files": "Project files",
-    "estimated-time": "Estimated Time",
+    "project-files": "ملفات المشروع",
+    "estimated-time": "الوقت المقدر",
     "sections": {
-      "chapter": "Chapter {number}"
+      "chapter": "الفصل {number}"
     },
-    "question-of": "Question {index} of {total}",
-    "section-of": "{number} of {total}",
-    "overriding-title": "{newTitle} with {title}",
+    "question-of": "سؤال {index} من {total}",
+    "section-of": "{number} من {total}",
+    "overriding-title": "{newTitle} مع {title}",
     "time": {
       "format": "{number} {minutes}",
       "minutes": {
-        "full": "minute | minutes | {count} minutes",
-        "short": "min | mins"
+        "full": "دقيقة | دقائق | {count} دقائق",
+        "short": "د | دق"
       },
       "hours": {
-        "full": "hour | hours"
+        "full": "ساعة | ساعات"
       }
     }
   },
   "documentation": {
-    "title": "Documentation",
+    "title": "التوثيق",
     "nav": {
-      "breadcrumbs": "Breadcrumbs",
-      "menu": "Menu",
-      "open-menu": "Open Menu",
-      "close-menu": "Close Menu"
+      "breadcrumbs": "الروابط المتسلسلة",
+      "menu": "القائمة",
+      "open-menu": "افتح القائمة",
+      "close-menu": "أغلق القائمة"
     },
-    "current-page": "Current page is {title}",
+    "current-page": "الصفحة الحالية هي {title}",
     "card": {
-      "learn-more": "Learn More",
-      "read-article": "Read article",
-      "start-tutorial": "Start tutorial",
-      "view-api": "View API collection",
-      "view-symbol": "View symbol",
-      "view-sample-code": "View sample code"
+      "learn-more": "تعرف على المزيد",
+      "read-article": "اقرأ المقال",
+      "start-tutorial": "ابدأ الدليل",
+      "view-api": "عرض مجموعة API",
+      "view-symbol": "عرض الرمز",
+      "view-sample-code": "عرض الكود النموذجي"
     },
-    "view-more": "View more"
+    "view-more": "عرض المزيد"
   },
   "declarations": {
-    "hide-other-declarations": "Hide other declarations",
-    "show-all-declarations": "Show all declarations"
+    "hide-other-declarations": "إخفاء التصريحات الأخرى",
+    "show-all-declarations": "عرض جميع التصريحات"
   },
   "aside-kind": {
-    "beta": "Beta",
-    "experiment": "Experiment",
-    "important": "Important",
-    "note": "Note",
-    "tip": "Tip",
-    "warning": "Warning",
-    "deprecated": "Deprecated"
+    "beta": "نسخة تجريبية",
+    "experiment": "تجربة",
+    "important": "مهم",
+    "note": "ملاحظة",
+    "tip": "نصيحة",
+    "warning": "تحذير",
+    "deprecated": "مهملة"
   },
   "change-type": {
-    "added": "Added",
-    "modified": "Modified",
-    "deprecated": "Deprecated"
+    "added": "تمت الإضافة",
+    "modified": "تم التعديل",
+    "deprecated": "مهملة"
   },
   "verbs": {
-    "hide": "Hide",
-    "show": "Show",
-    "close": "Close"
+    "hide": "إخفاء",
+    "show": "عرض",
+    "close": "إغلاق"
   },
   "sections": {
-    "attributes": "Attributes",
-    "title": "Section {number}",
-    "on-this-page": "On this page",
-    "topics": "Topics",
-    "default-implementations": "Default Implementations",
-    "relationships": "Relationships",
-    "see-also": "See Also",
-    "declaration": "Declaration",
-    "details": "Details",
-    "parameters": "Parameters",
-    "possible-values": "Possible Values",
-    "parts": "Parts",
-    "availability": "Availability",
-    "resources": "Resources"
+    "attributes": "السمات",
+    "title": "القسم {number}",
+    "on-this-page": "في هذه الصفحة",
+    "topics": "المواضيع",
+    "default-implementations": "التنفيذات الافتراضية",
+    "relationships": "العلاقات",
+    "see-also": "انظر أيضًا",
+    "declaration": "التصريح",
+    "details": "التفاصيل",
+    "parameters": "المعلمات",
+    "possible-values": "القيم الممكنة",
+    "parts": "الأجزاء",
+    "availability": "التوافر",
+    "resources": "المصادر"
   },
   "metadata": {
     "details": {
-      "name": "Name",
-      "key": "Key",
-      "type": "Type"
+      "name": "الاسم",
+      "key": "المفتاح",
+      "type": "النوع"
     },
     "beta": {
-      "legal": "This documentation refers to beta software and may be changed.",
-      "software": "Beta Software"
+      "legal": "يشير هذا التوثيق إلى برنامج تجريبي وقد يتغير.",
+      "software": "برنامج تجريبي"
     },
-    "default-implementation": "Default implementation provided. | Default implementations provided."
+    "default-implementation": "تم توفير تنفيذ افتراضي. | تم توفير تنفيذات افتراضية."
   },
   "availability": {
-    "introduced-and-deprecated": "Introduced in {name} {introducedAt} and deprecated in {name} {deprecatedAt}",
-    "available-on-platform": "Available on {name}",
-    "available-on-platform-version": "Available on {name} {introducedAt} and later"
+    "introduced-and-deprecated": "تمت المقدمة في {name} {introducedAt} وتم الإهمال في {name} {deprecatedAt}",
+    "available-on-platform": "متاح على {name}",
+    "available-on-platform-version": "متاح على {name} {introducedAt} وللإصدارات الأحدث"
   },
-  "more": "More",
-  "less": "Less",
-  "api-reference": "API Reference",
+  "more": "المزيد",
+  "less": "الأقل",
+  "api-reference": "مرجع API",
   "filter": {
-    "title": "Filter",
-    "search": "Search",
-    "search-symbols": "Search for symbols in {technology}",
-    "suggested-tags": "Suggested tag | Suggested tags",
-    "selected-tags": "Selected tag | Selected tags",
-    "add-tag": "Add tag",
-    "tag-select-remove": "Tag. Select to remove from list.",
-    "navigate": "To navigate the symbols, press Up Arrow, Down Arrow, Left Arrow or Right Arrow",
-    "siblings-label": "{number-siblings} of {total-siblings} symbols inside {parent-siblings}",
-    "parent-label": "{number-siblings} of {total-siblings} symbols inside {parent-siblings} containing one symbol | {number-siblings} of {total-siblings} symbols inside {parent-siblings} containing {number-parent} symbols",
-    "reset-filter": "Reset Filter",
+    "title": "تصفية",
+    "search": "بحث",
+    "search-symbols": "البحث عن الرموز في {technology}",
+    "suggested-tags": "اقتراحات الوسوم | الوسوم المقترحة",
+    "selected-tags": "الوسم المحدد | الوسوم المحددة",
+    "add-tag": "إضافة وسم",
+    "tag-select-remove": "وسم. اختر للحذف من القائمة.",
+    "navigate": "للتنقل بين الرموز، اضغط على السهم لأعلى، السهم لأسفل، السهم لليسار أو السهم لليمين",
+    "siblings-label": "{number-siblings} من {total-siblings} الرموز داخل {parent-siblings}",
+    "parent-label": "{number-siblings} من {total-siblings} الرموز داخل {parent-siblings} تحتوي على رمز واحد | {number-siblings} من {total-siblings} الرموز داخل {parent-siblings} تحتوي على {number-parent} رموز",
+    "reset-filter": "إعادة تعيين التصفية",
     "tags": {
-      "sample-code": "Sample Code",
-      "tutorials": "Tutorials",
-      "articles": "Articles",
-      "web-service-endpoints": "Web Service Endpoints",
-      "hide-deprecated": "Hide Deprecated"
+      "sample-code": "كود نموذجي",
+      "tutorials": "أدلة",
+      "articles": "مقالات",
+      "web-service-endpoints": "نقاط نهاية خدمات الويب",
+      "hide-deprecated": "إخفاء المهملات"
     }
   },
   "navigator": {
-    "title": "Documentation Navigator",
-    "open-navigator": "Open Documentation Navigator",
-    "close-navigator": "Close Documentation Navigator",
-    "no-results": "No results found.",
-    "no-children": "No data available.",
-    "error-fetching": "There was an error fetching the data.",
-    "items-found": "No items were found | 1 item was found | {number} items were found. Tab back to navigate through them.",
-    "navigator-is": "Navigator is {state}",
+    "title": "ملاح المستندات",
+    "open-navigator": "افتح ملاح المستندات",
+    "close-navigator": "أغلق ملاح المستندات",
+    "no-results": "لم يتم العثور على نتائج.",
+    "no-children": "لا توجد بيانات متاحة.",
+    "error-fetching": "حدث خطأ أثناء جلب البيانات.",
+    "items-found": "لم يتم العثور على أي عناصر | تم العثور على عنصر واحد | تم العثور على {number} عناصر. عد للخلف للتنقل عبرهم.",
+    "navigator-is": "الملاح في حالة {state}",
     "state": {
-      "loading": "loading",
-      "ready": "ready"
+      "loading": "جار التحميل",
+      "ready": "جاهز"
     }
   },
   "tab": {
-    "request": "Request",
-    "response": "Response"
+    "request": "الطلب",
+    "response": "الاستجابة"
   },
-  "required": "Required",
+  "required": "مطلوب",
   "parameters": {
-    "default": "Default",
-    "minimum": "Minimum",
-    "minimumLength": "Minimum length",
-    "maximum": "Maximum",
-    "maximumLength": "Maximum length",
-    "possible-types": "Type | Possible types",
-    "possible-values": "Value | Possible Values"
+    "default": "الافتراضي",
+    "minimum": "الحد الأدنى",
+    "minimumLength": "الطول الأدنى",
+    "maximum": "الحد الأقصى",
+    "maximumLength": "الطول الأقصى",
+    "possible-types": "النوع | الأنواع الممكنة",
+    "possible-values": "القيمة | القيم الممكنة"
   },
-  "content-type": "Content-Type: {value}",
-  "read-only": "Read-only",
+  "content-type": "نوع المحتوى: {value}",
+  "read-only": "للقراءة فقط",
   "error": {
-    "unknown": "An unknown error occurred.",
-    "image": "Image failed to load",
-    "not-found": "The page you're looking for can't be found."
+    "unknown": "حدث خطأ غير معروف.",
+    "image": "فشل تحميل الصورة",
+    "not-found": "لا يمكن العثور على الصفحة التي تبحث عنها."
   },
   "color-scheme": {
-    "select": "Select a color scheme preference",
-    "auto": "Auto",
-    "dark": "Dark",
-    "light": "Light"
+    "select": "اختر تفضيل نظام الألوان",
+    "auto": "تلقائي",
+    "dark": "داكن",
+    "light": "فاتح"
   },
   "accessibility": {
     "strike": {
-      "start": "start of stricken text",
-      "end": "end of stricken text"
+      "start": "بداية النص المشطوب عليه",
+      "end": "نهاية النص المشطوب عليه"
     },
     "code": {
-      "start": "start of code block",
-      "end": "end of code block"
+      "start": "بداية الكود",
+      "end": "نهاية الكود"
     },
-    "skip-navigation": "Skip Navigation",
-    "in-page-link": "in page link"
+    "skip-navigation": "تخطي التنقل",
+    "in-page-link": "رابط في الصفحة"
   },
-  "select-language": "Select the language for this page",
+  "select-language": "اختر اللغة لهذه الصفحة",
   "icons": {
-    "clear": "Clear",
-    "web-service-endpoint": "Web Service Endpoint",
-    "search": "Search"
+    "clear": "مسح",
+    "web-service-endpoint": "نقطة نهاية لخدمة ويب",
+    "search": "بحث"
   },
   "formats": {
     "parenthesis": "({content})",
@@ -215,23 +215,23 @@
   },
   "quicknav": {
     "button": {
-      "label": "Open Quick Navigation",
-      "title": "Click or type / for quick navigation"
+      "label": "فتح التنقل السريع",
+      "title": "انقر أو اكتب / للتنقل السريع"
     },
-    "preview-unavailable": "Preview unavailable"
+    "preview-unavailable": "المعاينة غير متوفرة"
   },
-  "mentioned-in": "Mentioned in",
+  "mentioned-in": "مشار إليه في",
   "pager": {
-    "roledescription": "content slider",
+    "roledescription": "منزلقة المحتوى",
     "page": {
-      "label": "content page {index} of {count}"
+      "label": "صفحة المحتوى {index} من {count}"
     },
     "control": {
-      "navigate-previous": "navigate to previous page of content",
-      "navigate-next": "navigate to next page of content"
+      "navigate-previous": "انتقل إلى الصفحة السابقة من المحتوى",
+      "navigate-next": "انتقل إلى الصفحة التالية من المحتوى"
     }
   },
   "links-grid": {
-    "label": "grid of links"
+    "label": "شبكة الروابط"
   }
 }
